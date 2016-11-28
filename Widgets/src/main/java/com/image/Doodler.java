@@ -33,7 +33,6 @@ class Doodler implements View.OnTouchListener, IDoodler {
     private Canvas mCanvas;
     private Bitmap mDrawBitmap;
     private Paint mClearPaint;
-    private DoodlerListener mDoodlerListener;
     private float[] mValue = new float[9];
 
     private int mColor = Color.BLACK;
@@ -84,9 +83,7 @@ class Doodler implements View.OnTouchListener, IDoodler {
             case MotionEvent.ACTION_CANCEL:
                 mCurrentAction.onUp(touchX, touchY);
                 mActions.add(mCurrentAction);
-                if (mDoodlerListener != null) {
-                    mDoodlerListener.onCanvasChanged();
-                }
+
                 mCurrentAction.draw();
                 mHost.invalidate();
                 break;
@@ -194,16 +191,15 @@ class Doodler implements View.OnTouchListener, IDoodler {
     }
 
 
+    // TODO: 2016/11/21 0021 support redo
     @Override
-    public IDoodler setDoodlerListener(DoodlerListener doodlerListener) {
-        mDoodlerListener = doodlerListener;
+    public IDoodler redo() {
         return this;
     }
 
-
-    // TODO: 2016/11/21 0021 后面再写吧
+    // TODO: 2016/11/28 0028   support type
     @Override
-    public IDoodler redo() {
+    public IDoodler setType(@Type int type) {
         return this;
     }
 

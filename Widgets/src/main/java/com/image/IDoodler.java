@@ -26,7 +26,7 @@ public interface IDoodler {
 
     IDoodler redo();
 
+    IDoodler setType(@Type int type);
 
-    IDoodler setDoodlerListener(DoodlerListener doodlerListener);
 
 }

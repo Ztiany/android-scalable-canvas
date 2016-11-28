@@ -5,9 +5,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 
-import com.android.base.utils.android.UnitConverter;
 import com.image.DoodleView;
-import com.image.DoodlerListener;
 import com.image.Mode;
 
 import java.util.List;
@@ -42,12 +40,10 @@ final class SignEditorTools {
     private int mSelectedColorId;
     private View mLayoutView;
     private DoodleView mDoodleView;
-    private EditSignFragment mHost;
 
-    SignEditorTools(EditSignFragment host, View layout, DoodleView doodleView) {
+    SignEditorTools(View layout, DoodleView doodleView) {
         mLayoutView = layout;
         mDoodleView = doodleView;
-        mHost = host;
         init();
     }
 
@@ -57,7 +53,7 @@ final class SignEditorTools {
         mEraserWidthSb.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                mDoodleView.getDoodler().setStrokeWidth(UnitConverter.dpToPx(progress));
+                mDoodleView.getDoodler().setStrokeWidth(progress);
             }
 
             @Override
@@ -75,28 +71,12 @@ final class SignEditorTools {
         mEraserWidthSb.setMax(40);
         mEraserWidthSb.setProgress(20);
 
-        //保存
-        mSaveIv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mHost.saveSign(mDoodleView.createCapture());
-            }
-        });
 
         //默认选择手势缩放模式
         mOperationIvs.get(2).setSelected(true);
         mSelectedOperationId = mOperationIvs.get(2).getId();
         mRedBrushIv.setSelected(true);
 
-        //监听添加了涂鸦
-        mDoodleView.getDoodler().setDoodlerListener(new DoodlerListener() {
-            @Override
-            public void onCanvasChanged() {
-                if (!mHost.mNeedPromptSave) {
-                    mHost.mNeedPromptSave = true;
-                }
-            }
-        });
     }
 
     @OnClick({R.id.design_iv_brush_red, R.id.design_iv_brush_black})
@@ -114,7 +94,7 @@ final class SignEditorTools {
     private void startDoodle() {
         mDoodleView.startDoodle();
         int color = mBlackBrushIv.isSelected() ? Color.BLACK : Color.RED;
-        mDoodleView.getDoodler().setModel(Mode.PEN).setColor(color).setStrokeWidth(UnitConverter.dpToPx(1.5F));
+        mDoodleView.getDoodler().setModel(Mode.PEN).setColor(color).setStrokeWidth(1.5F);
     }
 
     @OnClick({R.id.design_iv_eraser, R.id.design_iv_brush, R.id.design_iv_drag})
@@ -137,7 +117,7 @@ final class SignEditorTools {
                 mDoodleView.startDoodle();
                 mDoodleView.getDoodler()
                         .setModel(Mode.ERASER)
-                        .setStrokeWidth(UnitConverter.dpToPx(mEraserWidthSb.getProgress()));
+                        .setStrokeWidth(mEraserWidthSb.getProgress());
 
                 mEraserWidthSb.setVisibility(VISIBLE);
                 mBrushContentView.setVisibility(INVISIBLE);
@@ -158,4 +138,7 @@ final class SignEditorTools {
         }
     }
 
+    void undo() {
+        mDoodleView.getDoodler().undo();
+    }
 }
