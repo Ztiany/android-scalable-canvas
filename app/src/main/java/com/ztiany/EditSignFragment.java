@@ -18,32 +18,24 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
- * <br/>   Description：编辑标记，SignInfo中有designId表示修改，执行update操作；没有designId(= 0)表示添加标记，执行save操作。
- *
  * @author Ztiany
  *         Email: ztiany3@gmail.com
  *         Date : 2016-11-18 15:47
  */
-
 public class EditSignFragment extends Fragment {
-
 
     @BindView(R.id.design_dv_doodle)
     DoodleView mDoodleView;
     private SignEditorTools mSignEditorTools;
 
-
     public static EditSignFragment newInstance() {
         return new EditSignFragment();
     }
 
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setHasOptionsMenu(true);
-
     }
 
     @Override
@@ -61,34 +53,23 @@ public class EditSignFragment extends Fragment {
         MenuItemCompat.setShowAsAction(item, MenuItemCompat.SHOW_AS_ACTION_ALWAYS);
     }
 
-
-
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.design_fragment_sign_editor, container, false);
     }
 
-
-
-
-
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
         ButterKnife.bind(this, view);
         View signToolsLayout = view.findViewById(R.id.design_view_sign_tools);
         mSignEditorTools = new SignEditorTools(signToolsLayout, mDoodleView);
-
     }
-
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
         Glide.with(this)
                 .load("http://f.hiphotos.baidu.com/image/pic/item/b151f8198618367a9f738e022a738bd4b21ce573.jpg")
                 .into(mDoodleView);

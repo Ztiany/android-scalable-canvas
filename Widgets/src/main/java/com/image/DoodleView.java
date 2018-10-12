@@ -8,14 +8,6 @@ import android.util.AttributeSet;
 import com.photoview.PhotoView;
 import com.photoview.PhotoViewAttacher;
 
-
-/**
- * <br/>   Description：涂鸦
- *
- * @author Ztiany
- *         Email: ztiany3@gmail.com
- *         Date : 2016-11-18 10:40
- */
 public class DoodleView extends PhotoView {
 
     private PhotoViewAttacher mPhotoViewAttacher;
@@ -34,7 +26,6 @@ public class DoodleView extends PhotoView {
         mDoodler = new Doodler(this);
     }
 
-
     @Override
     public void setOnTouchListener(OnTouchListener l) {
         if (l instanceof PhotoViewAttacher) {
@@ -45,16 +36,13 @@ public class DoodleView extends PhotoView {
         super.setOnTouchListener(l);
     }
 
-
     public void startDoodle() {
         super.setOnTouchListener(mDoodler);
     }
 
-
     public void startGestures() {
         super.setOnTouchListener(mPhotoViewAttacher);
     }
-
 
     @Override
     protected void onDraw(Canvas canvas) {

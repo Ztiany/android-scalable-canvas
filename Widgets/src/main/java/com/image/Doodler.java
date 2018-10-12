@@ -15,15 +15,6 @@ import android.view.View;
 import java.util.ArrayList;
 import java.util.List;
 
-
-/**
- * <br/>   Description：可以缩放的涂鸦View实现
- *
- * @author Ztiany
- *         Email: ztiany3@gmail.com
- *         Date : 2016-11-18 18:31
- */
-
 class Doodler implements View.OnTouchListener, IDoodler {
 
     private Draw mCurrentAction;
@@ -53,7 +44,6 @@ class Doodler implements View.OnTouchListener, IDoodler {
         mClearPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
 
     }
-
 
     @Override
     public boolean onTouch(View v, MotionEvent event) {
@@ -90,7 +80,6 @@ class Doodler implements View.OnTouchListener, IDoodler {
         }
         return true;
     }
-
 
     private void checkCanvas() {
         if (mDrawBitmap == null) {
@@ -133,18 +122,11 @@ class Doodler implements View.OnTouchListener, IDoodler {
         return mPaint;
     }
 
-
     void onDraw(Canvas canvas) {
         if (mDrawBitmap != null) {
             canvas.drawBitmap(mDrawBitmap, mHost.getImageMatrix(), null);
         }
     }
-
-
-    ///////////////////////////////////////////////////////////////////////////
-    // Attr
-    ///////////////////////////////////////////////////////////////////////////
-
 
     @Override
     public IDoodler setColor(@ColorInt int color) {
@@ -174,7 +156,6 @@ class Doodler implements View.OnTouchListener, IDoodler {
         return this;
     }
 
-
     @Override
     public IDoodler undo() {
         if (mCanvas == null || mActions.isEmpty()) {
@@ -190,7 +171,6 @@ class Doodler implements View.OnTouchListener, IDoodler {
         return this;
     }
 
-
     // TODO: 2016/11/21 0021 support redo
     @Override
     public IDoodler redo() {
@@ -203,10 +183,8 @@ class Doodler implements View.OnTouchListener, IDoodler {
         return this;
     }
 
-
     private void invalidatePaint() {
         mPaint = null;
     }
-
 
 }

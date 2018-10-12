@@ -4,14 +4,6 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
 
-/**
- * <br/>    Description  :
- * <br/>    Email    : ztiany3@gmail.com
- *
- * @author Ztiany
- *         <p>
- *         Date : 2016-11-19 15:51
- */
 
 class PathDraw implements Draw {
 
@@ -44,7 +36,6 @@ class PathDraw implements Draw {
     public void draw() {
         mCanvas.drawPath(mPath, mPaint);
     }
-
 
     @Override
     public void setPaint(Paint paint) {

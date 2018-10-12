@@ -18,9 +18,6 @@ import butterknife.OnClick;
 import static android.view.View.INVISIBLE;
 import static android.view.View.VISIBLE;
 
-///////////////////////////////////////////////////////////////////////////
-// UIController
-///////////////////////////////////////////////////////////////////////////
 final class SignEditorTools {
 
     @BindViews({R.id.design_iv_eraser, R.id.design_iv_brush, R.id.design_iv_drag})
@@ -71,12 +68,10 @@ final class SignEditorTools {
         mEraserWidthSb.setMax(40);
         mEraserWidthSb.setProgress(20);
 
-
         //默认选择手势缩放模式
         mOperationIvs.get(2).setSelected(true);
         mSelectedOperationId = mOperationIvs.get(2).getId();
         mRedBrushIv.setSelected(true);
-
     }
 
     @OnClick({R.id.design_iv_brush_red, R.id.design_iv_brush_black})
@@ -89,7 +84,6 @@ final class SignEditorTools {
         mBlackBrushIv.setSelected(mBlackBrushIv == view);
         startDoodle();
     }
-
 
     private void startDoodle() {
         mDoodleView.startDoodle();

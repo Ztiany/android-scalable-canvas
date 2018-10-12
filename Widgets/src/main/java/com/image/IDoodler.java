@@ -2,17 +2,8 @@ package com.image;
 
 import android.support.annotation.ColorInt;
 
-/**
- * <br/>    Description  :
- * <br/>    Email    : ztiany3@gmail.com
- *
- * @author Ztiany
- *         <p>
- *         Date : 2016-11-19 00:03
- */
 
 public interface IDoodler {
-
 
     IDoodler setColor(@ColorInt int color);
 
@@ -27,6 +18,5 @@ public interface IDoodler {
     IDoodler redo();
 
     IDoodler setType(@Type int type);
-
 
 }
